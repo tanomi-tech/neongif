@@ -4,176 +4,121 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chunked Video Conversion</title>
+    <link rel="stylesheet" href="./style.css">
   </head>
   <body>
-    <input type="file" id="videoInput" accept="video/*">
-    <a id="convert-button">Convert</a>
+    <div id="wrapper">
+      <form id="convert-form">
+        <input type="file" id="file-input" accept="video/*">
+        <button id="convert-button">Convert</button>
+      </form>
+
+      <div id="preview-window">
+        <span id="progress-text"></span>
+        <progress id="progress-bar" max="100" value="0">0%</progress>
+      </div>
+    </div>
 
     <script type="module">
     import { showSaveFilePicker } from './node_modules/native-file-system-adapter/mod.js';
     import { FFmpeg } from "./node_modules/@ffmpeg/ffmpeg/dist/esm/index.js";
     import { fetchFile, toBlobURL } from "./node_modules/@ffmpeg/util/dist/esm/index.js";
     import { fileSave } from './node_modules/browser-fs-access/dist/index.modern.js';
-    import { ChunkReader } from './chunk-reader.js';
 
+    const convertForm = document.getElementById('convert-form');
+    const fileInput = document.getElementById('file-input'); 
+    const previewWindow = document.getElementById('preview-window');
+    const progBar = document.getElementById('progress-bar');
+    const progTxt = document.getElementById('progress-text');
 
+    const BASE_URL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm';
     const ffmpeg = new FFmpeg({ log: true });
+
+    await ffmpeg.load({
+      coreURL: await toBlobURL(`${BASE_URL}/ffmpeg-core.js`, 'text/javascript'),
+      wasmURL: await toBlobURL(`${BASE_URL}/ffmpeg-core.wasm`, 'application/wasm'),
+    });
 
     ffmpeg.on("log", ({ message }) => {
       console.log(message);
     });
 
     ffmpeg.on("progress", ({ progress }) => {
-      // message.innerHTML = `${progress * 100} %`;
-      console.log(`${progress * 100}% complete...`)
+      const progRounded = Math.round(progress * 100);
+      if (progBar.value !== progRounded) {
+        progBar.value = progRounded;
+        progBar.innerText = progRounded + '%';
+        progTxt.innerText = progRounded + '%';
+        console.groupEnd();
+        console.group();
+        console.log(`${progRounded}% complete...`)
+      }
     });
 
-    const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm';
-
     async function processLargeVideo(file) {
-      // Load ffmpeg.wasm
-      await ffmpeg.load({
-        coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
-        wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
-      });
+      const buff = await file.arrayBuffer();
+      await ffmpeg.writeFile(file.name, new Uint8Array(buff));
+      const basename = file.name.split('.');
+      basename.pop();
+      const outputName = `${basename.join()}.gif`;
+      const outputWidth = '640';
 
-      // Define chunk size (e.g., 64 MB)
-      // const chunkDuration = 30;
-      const chunkSize = 64 * 1024 * 1024;
-      const totalChunks = Math.ceil(file.size / chunkSize);
-      console.log('TOTAL CHUNKS:', totalChunks);
+      console.group();
+      await ffmpeg.exec([
+        '-threads', 
+        Math.min(navigator.hardwareConcurrency, 4).toString(),
+        '-i',
+        file.name,
+        '-vf', 
+        `fps=10,scale=${outputWidth}:-1:flags=lanczos`,
+        outputName
+      ]);
+      console.groupEnd();
 
-      // Prompt the user to select a location to save the output file
-      // const fileHandle = await showSaveFilePicker({
-      //   _preferPolyfill: true,
-      //   suggestedName: `CONVERTED--${file.name}`,
-      //   types: [
-      //     {
-      //       description: "Videos",
-      //       accept: {
-      //         "video/*": [".mp4", ".mov", ".mkv"],
-      //       },
-      //     },
-      //   ],
-      //   excludeAcceptAllOption: true,
-      //   multiple: false,
-      // });
+      const outputData = await ffmpeg.readFile(outputName);
+      const blob = new Blob([outputData.buffer], {type: 'image/gif'});
+      const outputUrl = URL.createObjectURL(blob);
+      const gif = document.createElement('img');
+      gif.src = outputUrl;
+      gif.classList.add('preview-gif');
+      previewWindow.replaceChildren(gif);
 
-      // console.log(fileHandle);
+      const downloadButton = document.createElement('a');
+      downloadButton.innerText = 'Download';
+      downloadButton.id = 'download-button';
+      downloadButton.href = outputUrl;
+      downloadButton.download = `${basename}.gif`;
 
-      // const reader = new ChunkReader(chunkSize);
-      // reader.readChunks(file);
-      const offset = 0;
-      const writableStream = new WritableStream({
-        start(controller) {
-          console.log('WritableStream started');
-        },
-        write(chunk, controller) {
-          console.log(`Writing chunk of size ${chunk.size} bytes`);
-          const url = URL.createObjectURL(chunk);
-          const a = document.createElement('a');
-          a.style.display = 'none';
-          a.href = url;
-          a.download = `chunk-${Math.ceil(offset / chunkSize)}.mp4`;
-          document.body.appendChild(a);
-          a.click();
-          URL.revokeObjectURL(url);
-          document.body.removeChild(a);
-        },
-        close() {
-          console.log('WritableStream closed');
-        },
-        abort(err) {
-          console.error('WritableStream aborted', err);
-        }
-      });
+      previewWindow.parentElement.append(downloadButton);
 
-      const writer = writableStream.getWriter();
-      const readChunk = async (file, chunkSize, offset = 0) => {
-        const end = Math.min(offset + chunkSize, file.size);
-        const blob = file.slice(offset, end);
-        offset = end;
-
-        if (blob.size > 0) {
-          await writer.write(blob);
-          if (offset < file.size) {
-            return readChunk(file, chunkSize, offset);
-          }
-          writer.close();
-          console.log('Finished reading file!');
-        }
-      }
-
-      readChunk(file, chunkSize);
-
-      // const fileHandle = await window.showSaveFilePicker({
-      //   suggestedName: 'combined-output.mp4',
-      //   types: [
-      //     {
-      //       description: 'Video Files',
-      //       accept: { 'video/mp4': ['.mp4'] },
-      //     },
-      //   ],
-      // });
-
-      // Create a writable stream
-      // const writableStream = await fileHandle.createWritable({keepExistingData: false});
-      // console.log(writableStream)
-      //
-      // // Process each chunk and write to the file incrementally
-      // for (let i = 0; i < totalChunks; i++) {
-      //   const start = i * chunkSize;
-      //   const end = Math.min(start + chunkSize, file.size);
-      //
-      //   // Read the chunk
-      //   const chunk = file.slice(start, end);
-      //   const chunkArrayBuffer = await chunk.arrayBuffer();
-      //   const chunkName = `chunk.${i}.mp4`;
-      //
-      //   // Write the chunk to the virtual file system
-      //   console.log('writing...')
-      //   await ffmpeg.writeFile(chunkName, new Uint8Array(chunkArrayBuffer));
-      //
-      //   // Process the chunk with ffmpeg.wasm
-      //   const outputName = `output-${i}.mp4`;
-      //   await ffmpeg.exec(['-threads', Math.min(navigator.hardwareConcurrency, 4), '-i', chunkName, '-c:v', 'libx264', outputName]);
-      //
-      //   // Read the processed chunk
-      //   const outputData = await ffmpeg.readFile(outputName);
-      //
-      //   // Write the processed chunk to the file
-      //   await writableStream.write(outputData);
-      //
-      //   // Clean up the virtual file system
-      //   await ffmpeg.deleteFile(chunkName);
-      //   await ffmpeg.deleteFile(outputName);
-      //
-      //   console.log(`Processed and wrote chunk ${i + 1} of ${totalChunks}`);
-      // }
-
-      // Close the writable stream to complete the file
-      // await writableStream.close();
+      await ffmpeg.deleteFile(file.name);
+      await ffmpeg.deleteFile(outputName);
       console.log('File has been written successfully.');
     }
 
-    // Event listener for file input
     let file;
-    document.getElementById('videoInput').addEventListener('change', (event) => {
+    fileInput.addEventListener('change', (event) => {
       file = event.target.files[0];
-      // const conversionButton = document.getElementById('convert-button');
-      // const blob = new Blob([], {type: 'application/x-binary'});
-      // conversionButton.href = URL.createObjectURL(blob);
-      // conversionButton.download = `CONVERTED--${file.name}`;
-      // conversionButton.click();
-      if (file) {
-        processLargeVideo(file);
-      }
     });
 
-    document.getElementById('convert-button').addEventListener('click', (event) => {
-      if (file) {
-        processLargeVideo(file);
-      }
+    convertForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (!file) return false; 
+
+        const convertButton = document.getElementById('convert-button');
+        convertButton.disabled = true;
+        convertButton.innerText = 'Converting...'
+        progTxt.classList.add('active');
+        progTxt.innerText = '0%';
+        processLargeVideo(file)
+          .then(() => {
+            convertButton.disabled = false;
+            convertButton.innerText = 'Convert';
+            fileInput.value = '';
+          })
+          .catch(err => {
+            console.trace(err);
+          });
     });
     </script>
   </body>
