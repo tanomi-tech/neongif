@@ -9,13 +9,26 @@
   <body>
     <div id="wrapper">
       <form id="convert-form">
-        <input type="file" id="file-input" accept="video/*">
-        <button id="convert-button">Convert</button>
+        <label for="video-file">
+          <input name="video-file" type="file" id="file-input" accept="video/*,.mkv">
+        </label>
+
+        <label for="start-time">
+          Start Time: 
+          <input name="start-time-hours" type="number" min="0" max="0" step="1" style="width: 3rem;"> hh
+          <input name="start-time-minutes" type="number" min="0" max="0" step="1" style="width: 3rem;"> mm
+          <input name="start-time-seconds" type="number" min="0" max="0" step=".01" style="width: 6rem;" required> ss
+        </label>
+
+        <label for="duration">
+          Duration (seconds): 
+          <input required name="duration" type="number" min=".01" max="0" step=".01">
+        </label>
+
+        <button id="convert-button" disabled>Convert</button>
       </form>
 
       <div id="preview-window">
-        <span id="progress-text"></span>
-        <progress id="progress-bar" max="100" value="0">0%</progress>
       </div>
     </div>
     <script type="module" src="main.js"></script>

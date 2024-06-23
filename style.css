@@ -6,6 +6,15 @@ html, body {
   font-family: 'Open Sans', 'Noto', 'Ubuntu', sans-serif;
 }
 
+form, form input {
+  font-size: 20px;
+}
+
+input[type=number]:invalid {
+  border: 2px solid red;
+  outline: none;
+}
+
 #wrapper {
   display: flex;
   flex-flow: column nowrap;
@@ -65,19 +74,45 @@ form > * {
   align-items: center;
 }
 
-#progress-bar {
-  display: block;
+.progress-section {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
   width: 100%;
-  height: 1rem;
-  accent-color: blueviolet;
 }
 
-#progress-bar::before {
+.progress-bar, .progress-value {
+  border-radius: 2em;
+}
+
+.progress-bar {
+  border: 1px solid #adadad;
+  height: .5rem;
+  display: block;
+  width: 100%;
+  flex-grow: 1;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.progress-bar::before {
   margin-left: 1rem;
 }
 
-#progress-text.active {
+.progress-text {
   margin-right: 1rem;
+}
+
+.progress-value {
+  background-color: blueviolet;
+  display: inline-block;
+  height: 100%;
+  width: 0%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  transition: width .5s ease;
 }
 
 .preview-gif {
