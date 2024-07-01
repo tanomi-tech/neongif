@@ -1,0 +1,48 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Chunked Video Conversion
+    link(rel='stylesheet', href='./fonts.css')
+    link(rel='stylesheet', href='./style.css')
+    link(rel='stylesheet', href='./neon.css')
+    link(rel='stylesheet', href='./select-buttons.css')
+  body
+    #wrapper
+      h1#title.neon D
+        span.flicker-slow o
+        | ugh
+        span.flicker-fast b
+        | oy
+      form#convert-form
+        label(for='video-file')
+          input#file-input(name='video-file', type='file', accept='video/*,.mkv')
+        label(for='start-time')
+          | Start Time: 
+          input(name='start-time-hours', type='number', min='0', max='0', step='1', style='width: 3rem;')
+          |  hh
+          input(name='start-time-minutes', type='number', min='0', max='0', step='1', style='width: 3rem;')
+          |  mm
+          input(name='start-time-seconds', type='number', min='0', max='0', step='.01', style='width: 6rem;', required='')
+          |  ss
+        fieldset
+          legend
+            | Duration (seconds):
+          div.button-wrap
+            input(type="radio" name="duration" id="1s-button" class="hidden radio-label" value='1.0' checked)
+            label(for="1s-button" class="button-label")
+              span 1s
+            input(type="radio" name="duration" id="3s-button" class="hidden radio-label" value='3.0')
+            label(for="3s-button" class="button-label")
+              span 3s
+            input(type="radio" name="duration" id="5s-button" class="hidden radio-label" value='5.0')
+            label(for="5s-button" class="button-label")
+              span 5s
+            label(for='custom-duration') Custom: 
+              input(required='', name='duration', id='custom-duration' type='number', min='.01', max='0', step='.01')
+        button#convert-button(disabled='') Convert
+      #preview-window
+    script(type='module', src='main.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js')
+    script(src='background.js')

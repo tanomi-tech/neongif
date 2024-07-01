@@ -7,30 +7,66 @@
     <link rel="stylesheet" href="./style.css">
   </head>
   <body>
-    <div id="wrapper">
-      <form id="convert-form">
-        <label for="video-file">
-          <input name="video-file" type="file" id="file-input" accept="video/*,.mkv">
-        </label>
+    <pug src="index.pug"></pug>
 
-        <label for="start-time">
-          Start Time: 
-          <input name="start-time-hours" type="number" min="0" max="0" step="1" style="width: 3rem;"> hh
-          <input name="start-time-minutes" type="number" min="0" max="0" step="1" style="width: 3rem;"> mm
-          <input name="start-time-seconds" type="number" min="0" max="0" step=".01" style="width: 6rem;" required> ss
-        </label>
-
-        <label for="duration">
-          Duration (seconds): 
-          <input required name="duration" type="number" min=".01" max="0" step=".01">
-        </label>
-
-        <button id="convert-button" disabled>Convert</button>
-      </form>
-
-      <div id="preview-window">
-      </div>
-    </div>
-    <script type="module" src="main.js"></script>
+    <!-- <div id="wrapper"> -->
+    <!--   <form id="convert-form"> -->
+    <!--     <label for="video-file"> -->
+    <!--       <input name="video-file" type="file" id="file-input" accept="video/*,.mkv"> -->
+    <!--     </label> -->
+    <!---->
+    <!--     <label for="start-time"> -->
+    <!--       Start Time:  -->
+    <!--       <input name="start-time-hours" type="number" min="0" max="0" step="1" style="width: 3rem;"> hh -->
+    <!--       <input name="start-time-minutes" type="number" min="0" max="0" step="1" style="width: 3rem;"> mm -->
+    <!--       <input name="start-time-seconds" type="number" min="0" max="0" step=".01" style="width: 6rem;" required> ss -->
+    <!--     </label> -->
+    <!---->
+    <!--       <fieldset> -->
+    <!--         <legend> -->
+    <!--           Duration (seconds):  -->
+    <!--         </legend> -->
+    <!--         <div> -->
+    <!--           <input -->
+    <!--             type="button" -->
+    <!--             id="preset-1s" -->
+    <!--             value="1.0" -->
+    <!--            /> -->
+    <!---->
+    <!--           <input -->
+    <!--             type="button" -->
+    <!--             id="preset-3s" -->
+    <!--             value="1.0" -->
+    <!--            /> -->
+    <!---->
+    <!--           <input -->
+    <!--             type="button" -->
+    <!--             id="preset-5s" -->
+    <!--             value="1.0" -->
+    <!--            /> -->
+    <!---->
+    <!--           <label for="contactChoice1">Email</label> -->
+    <!---->
+    <!--           <input type="radio" id="contactChoice2" name="contact" value="phone" /> -->
+    <!--           <label for="contactChoice2">Phone</label> -->
+    <!---->
+    <!--           <input type="radio" id="contactChoice3" name="contact" value="mail" /> -->
+    <!--           <label for="contactChoice3">Mail</label> -->
+    <!---->
+    <!--           <input required name="duration" type="number" min=".01" max="0" step=".01"> -->
+    <!--         </div> -->
+    <!--         <div> -->
+    <!--           <button type="submit">Submit</button> -->
+    <!--         </div> -->
+    <!--       </fieldset> -->
+    <!--     </label> -->
+    <!---->
+    <!--     <button id="convert-button" disabled>Convert</button> -->
+    <!--   </form> -->
+    <!---->
+    <!--   <div id="preview-window"> -->
+    <!--   </div> -->
+    <!-- </div> -->
+    <!-- <script type="module" src="main.js"></script> -->
   </body>
 </html>

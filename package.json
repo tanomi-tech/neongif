@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "vite": "^5.2.0",
-    "vite-plugin-mkcert": "^1.17.5"
+    "vite-plugin-mkcert": "^1.17.5",
+    "vite-plugin-pug": "^0.3.2"
   }
 }
