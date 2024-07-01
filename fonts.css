@@ -1,0 +1,36 @@
+@font-face {
+  font-family: "Airstream NF";
+  src: url('./assets/fonts/AirstreamNF.otf');
+  /* src: url('fonts/fira/eot/FiraSans-Regular.eot') format('embedded-opentype'), */
+  /*      url('fonts/fira/woff2/FiraSans-Regular.woff2') format('woff2'), */
+  /*      url('fonts/fira/woff/FiraSans-Regular.woff') format('woff'), */
+  /*      url('fonts/fira/woff2/FiraSans-Regular.ttf') format('truetype'); */
+}
+
+@font-face {
+  font-family: "Digital Dream";
+  src: url('./assets/fonts/digital-dream/DIGITALDREAMSKEW.ttf');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Digital Dream";
+  src: url('./assets/fonts/digital-dream/DIGITALDREAMFATSKEW.ttf');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Digital Dream Narrow";
+  src: url('./assets/fonts/digital-dream/DIGITALDREAMSKEWNARROW.ttf');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Digital Dream Narrow";
+  src: url('./assets/fonts/digital-dream/DIGITALDREAMFATSKEWNARROW.ttf');
+  font-weight: bold;
+  font-style: italic;
+}

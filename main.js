@@ -1,7 +1,7 @@
-import { showSaveFilePicker } from './node_modules/native-file-system-adapter/mod.js';
+// import { showSaveFilePicker } from './node_modules/native-file-system-adapter/mod.js';
 import { FFmpeg } from "./node_modules/@ffmpeg/ffmpeg/dist/esm/index.js";
-import { fetchFile, toBlobURL } from "./node_modules/@ffmpeg/util/dist/esm/index.js";
-import { fileSave } from './node_modules/browser-fs-access/dist/index.modern.js';
+import { /* fetchFile, */ toBlobURL } from "./node_modules/@ffmpeg/util/dist/esm/index.js";
+// import { fileSave } from './node_modules/browser-fs-access/dist/index.modern.js';
 import { 
   calcTotalDuration, 
   createUpdateProgressCb,
@@ -10,7 +10,7 @@ import {
   kebabToCamel,
   parseTimestamp,
 } from './lib.js';
-import { fromEvent, combineLatest, startWith, merge, map, tap } from './node_modules/rxjs/dist/esm';
+import { fromEvent, combineLatest, startWith, map } from './node_modules/rxjs/dist/esm';
 
 const convertButton = document.getElementById('convert-button');
 const convertForm = document.getElementById('convert-form');
@@ -18,10 +18,21 @@ const previewWindow = document.getElementById('preview-window');
 
 // Form Inputs
 const fileInput = document.getElementById('file-input'); 
+const fileInputBtn = document.getElementById('file-input-button'); 
 const hoursInput = document.querySelector('input[name="start-time-hours"]');
 const minutesInput = document.querySelector('input[name="start-time-minutes"]');
 const secondsInput = document.querySelector('input[name="start-time-seconds"]');
-const durationInput = document.querySelector('input[name="duration"]');
+const durationInput = document.querySelector('input[name="custom-duration"]');
+const durationFieldset = document.querySelectorAll('input[name="duration"]');
+
+durationFieldset.forEach(input => {
+  input.addEventListener('change', () => {
+    console.log(input);
+    durationInput.required = input.id === 'custom-button';
+    durationInput.disabled = input.id !== 'custom-button';
+    if (durationInput.disabled) durationInput.value = '';
+  });
+});
 
 let file, totalDurationSeconds, capturedDuration = null;
 
@@ -134,8 +145,14 @@ async function processLargeVideo(submission) {
   console.log('File has been written successfully.');
 }
 
+
+fileInputBtn.addEventListener('click', () => {
+  fileInput.click();
+});
+
 fileInput.addEventListener('change', async (event) => {
   file = event.target.files[0];
+  fileInputBtn.innerText = file.name;
   convertButton.disabled = !file;
 
   const buff = await file.arrayBuffer();
@@ -161,6 +178,7 @@ convertForm.addEventListener('submit', (event) => {
       convertButton.disabled = false;
       convertButton.innerText = 'Convert';
       fileInput.value = '';
+      fileInputBtn.innerText = 'Choose File...';
     })
     .catch(err => {
       console.trace(err);

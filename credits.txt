@@ -1,0 +1,6 @@
+- Photo by <a href="https://unsplash.com/@picoftasty?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Mae Mu</a> on <a href="https://unsplash.com/photos/person-pouring-flour-on-table-beside-eggs-and-whisk-rgRbqFweGF0?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+- Blinking Neon CSS by https://codepen.io/DevchamploO/pen/NBWBGq
+- Flat Radio Button CSS by https://codepen.io/mblode/pen/VwGxaO
+- Airstream NF font license: 
+  - https://www.1001fonts.com/airstream-font.html#license
+  - https://www.1001fonts.com/licenses/ffc.html
