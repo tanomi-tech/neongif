@@ -47,7 +47,9 @@ combineLatest(timeInputEventStreams)
   .subscribe((timeSlots) => {
     const [hours, minutes, seconds] = timeSlots.map(slot => parseFloat(slot ?? '0'));
     const startTimeTotal = calcTotalDuration(hours, minutes, seconds);
-    durationInput.max = Math.max(0, (totalDurationSeconds ?? 0) - startTimeTotal);
+    durationInput.max = Math.round(
+        Math.max(0, (totalDurationSeconds ?? 0) - startTimeTotal) * 100
+    ) / 100;
   });
 
 const BASE_URL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm';
@@ -71,8 +73,8 @@ ffmpeg.on("log", (log) => {
     totalDurationSeconds = calcTotalDuration(hours, minutes, seconds);
 
     hoursInput.max = hours;
-    minutesInput.max = Math.min(59.99, (hours * 60) + minutes);
-    secondsInput.max = Math.min(59.99, totalDurationSeconds);
+    minutesInput.max = Math.round(Math.min(59.99, (hours * 60) + minutes) * 100) / 100;
+    secondsInput.max = Math.round(Math.min(59.99, totalDurationSeconds) * 100) / 100;
 
     capturedDuration = durationSegments?.join(':') ?? null;
   }
@@ -88,6 +90,7 @@ async function processLargeVideo(submission) {
     startTimeMinutes: mm, 
     startTimeSeconds: ss, 
     duration, 
+    customDuration = null,
     videoFile: file 
   } = submission;
 
@@ -101,7 +104,8 @@ async function processLargeVideo(submission) {
   const progressSectionNode = initProgressSection();
   previewWindow.replaceChildren(progressSectionNode);
 
-  const updateProgress = createUpdateProgressCb(progressSectionNode, duration);
+  const parsedDuration = duration !== 'custom' ? duration : customDuration;
+  const updateProgress = createUpdateProgressCb(progressSectionNode, parsedDuration);
 
   const handleFrameProgress = log => {
     if (!isFrameMetadata(log.message)) {
@@ -117,7 +121,7 @@ async function processLargeVideo(submission) {
     '-threads', Math.min(navigator.hardwareConcurrency, 4).toString(),
     '-ss', timestamp,
     '-i', file.name,
-    '-to', duration,
+    '-to', parsedDuration,
     '-vf', `fps=10,scale=${outputWidth}:-1:flags=lanczos`,
     outputName
   ]);
