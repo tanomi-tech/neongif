@@ -1,7 +1,5 @@
-// import { showSaveFilePicker } from './node_modules/native-file-system-adapter/mod.js';
 import { FFmpeg } from "./node_modules/@ffmpeg/ffmpeg/dist/esm/index.js";
-import { /* fetchFile, */ toBlobURL } from "./node_modules/@ffmpeg/util/dist/esm/index.js";
-// import { fileSave } from './node_modules/browser-fs-access/dist/index.modern.js';
+import { toBlobURL } from "./node_modules/@ffmpeg/util/dist/esm/index.js";
 import { 
   calcTotalDuration, 
   createUpdateProgressCb,
@@ -31,6 +29,7 @@ durationFieldset.forEach(input => {
     durationInput.required = input.id === 'custom-button';
     durationInput.disabled = input.id !== 'custom-button';
     if (durationInput.disabled) durationInput.value = '';
+    else if (!durationInput.disabled && durationInput.value === '') durationInput.value = '0.01';
   });
 });
 
@@ -179,7 +178,6 @@ convertForm.addEventListener('submit', (event) => {
 
   processLargeVideo(submission)
     .then(() => {
-      convertButton.disabled = false;
       convertButton.innerText = 'Convert';
       fileInput.value = '';
       fileInputBtn.innerText = 'Choose File...';
@@ -188,4 +186,6 @@ convertForm.addEventListener('submit', (event) => {
       console.trace(err);
     });
 });
+
+convertForm?.classList?.remove('invisible');
 

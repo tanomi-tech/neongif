@@ -4,3 +4,5 @@
 - Airstream NF font license: 
   - https://www.1001fonts.com/airstream-font.html#license
   - https://www.1001fonts.com/licenses/ffc.html
+- city night background:
+  - <a href="https://www.freepik.com/free-vector/city-night_794406.htm#fromView=search&page=1&position=6&uuid=8e9f2add-aa18-4418-bc36-334748e6bf46">Image by freepik</a>

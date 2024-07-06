@@ -16,35 +16,52 @@ html(lang='en')
           | ugh
           span.flicker-fast b
           | oy
-      form#convert-form(disabled)
+      form#convert-form.invisible(disabled)
         label(for='video-file')
-          button#file-input-button(type='button' style='padding: 0 1.1rem') Choose file...
+          button#file-input-button.digital-display(type='button' style='padding: 0 1.1rem') Choose file...
           input#file-input(name='video-file', type='file', accept='video/*,.mkv')
         fieldset(id='start-time-fieldset')
           legend Start Time 
-          input(name='start-time-hours', type='number', min='0', max='0', step='1', style='')
+          input.digital-display.narrow(name='start-time-hours', type='number', min='0.0', max='0', step='1', style='')
           |  hh
-          input(name='start-time-minutes', type='number', min='0', max='0', step='1', style='')
+          input.digital-display.narrow(name='start-time-minutes', type='number', min='0.0', max='0', step='1', style='')
           |  mm
-          input(name='start-time-seconds', type='number', min='0', max='0', step='.01', style='', required='')
+          input.digital-display.narrow(name='start-time-seconds', type='number', min='0.0', max='0', step='.01', style='', required)
           |  ss
         fieldset
           legend
             | Duration (seconds) 
           div.button-wrap
-            input(type="radio" name="duration" id="1s-button" class="hidden radio-label" value='1.0' checked)
-            label(for="1s-button" class="button-label")
-              span 1s
-            input(type="radio" name="duration" id="3s-button" class="hidden radio-label" value='3.0')
-            label(for="3s-button" class="button-label")
-              span 3s
-            input(type="radio" name="duration" id="5s-button" class="hidden radio-label" value='5.0')
-            label(for="5s-button" class="button-label")
-              span 5s
-            input(type="radio" name="duration" id="custom-button" class="hidden radio-label" value='custom')
-            label(for='custom-button' class='button-label') 
-              span Custom
-            input(name='custom-duration', id='custom-duration' type='number', min='.01', max='0', step='.01' disabled)
+            .button-control
+              input(type="radio" name="duration" id="1s-button" class="hidden radio-input" value='1.0')
+              div.button-label-container
+                label.button-label(for="1s-button")
+                  span 1s
+              .button-label-onlight
+
+            .button-control
+              input(type="radio" name="duration" id="3s-button" class="hidden radio-input" value='3.0')
+              div.button-label-container
+                label.button-label(for="3s-button")
+                  span 3s
+              .button-label-onlight
+
+            .button-control
+              input(type="radio" name="duration" id="5s-button" class="hidden radio-input" value='5.0')
+              div.button-label-container
+                label.button-label(for="5s-button")
+                  span 5s
+              .button-label-onlight
+
+            .button-control
+              input(type="radio" name="duration" id="custom-button" class="hidden radio-input" value='custom')
+              div.button-label-container
+                label.button-label(for='custom-button') 
+                  span Custom
+              .button-label-onlight
+
+            input.digital-display.narrow(name='custom-duration', id='custom-duration' type='number', min='.01', max='0', step='.01' disabled)
+            | &nbsp;ss
         button#convert-button(disabled='') Convert
-      #preview-window
+        #preview-window
     script(type='module', src='main.js')
