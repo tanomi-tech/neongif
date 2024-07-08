@@ -11,29 +11,34 @@ html(lang='en')
   body
     #wrapper
       div.title-wrapper
-        h1#title.neon D
+        h1#title.neon Ne
           span.flicker-slow o
-          | ugh
-          span.flicker-fast b
-          | oy
+          | nGi
+          span.flicker-fast f
+        //- h1#title.neon D
+        //-   | ugh
+        //-   span.flicker-fast b
+        //-   | oy
+        p.white Create GIFs from your video files directly from your browser. Privacy and security conscious&mdash; 
+          | your data never goes to any server.
       form#convert-form.invisible(disabled)
         label(for='video-file')
-          button#file-input-button.digital-display(type='button' style='padding: 0 1.1rem') Choose file...
+          button#file-input-button(type='button' style='padding: 0 1.1rem') Choose file...
           input#file-input(name='video-file', type='file', accept='video/*,.mkv')
         fieldset(id='start-time-fieldset')
           legend Start Time 
-          input.digital-display.narrow(name='start-time-hours', type='number', min='0.0', max='0', step='1', style='')
+          input(name='start-time-hours', type='number', min='0.0', max='0', step='1', style='')
           |  hh
-          input.digital-display.narrow(name='start-time-minutes', type='number', min='0.0', max='0', step='1', style='')
+          input(name='start-time-minutes', type='number', min='0.0', max='0', step='1', style='')
           |  mm
-          input.digital-display.narrow(name='start-time-seconds', type='number', min='0.0', max='0', step='.01', style='', required)
+          input(name='start-time-seconds', type='number', min='0.0', max='0', step='.01', style='', required)
           |  ss
         fieldset
           legend
             | Duration (seconds) 
           div.button-wrap
             .button-control
-              input(type="radio" name="duration" id="1s-button" class="hidden radio-input" value='1.0')
+              input(type="radio" name="duration" id="1s-button" class="hidden radio-input" value='1.0' required)
               div.button-label-container
                 label.button-label(for="1s-button")
                   span 1s
@@ -60,8 +65,11 @@ html(lang='en')
                   span Custom
               .button-label-onlight
 
-            input.digital-display.narrow(name='custom-duration', id='custom-duration' type='number', min='.01', max='0', step='.01' disabled)
+            input(name='custom-duration', id='custom-duration' type='number', min='.01', max='0', step='.01' disabled)
             | &nbsp;ss
         button#convert-button(disabled='') Convert
         #preview-window
+      footer
+        span Made with ❤️ by 
+          a(href="https://tanomitech.com/") Tanomi Technologies
     script(type='module', src='main.js')

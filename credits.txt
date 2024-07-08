@@ -1,8 +1,7 @@
-- Photo by <a href="https://unsplash.com/@picoftasty?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Mae Mu</a> on <a href="https://unsplash.com/photos/person-pouring-flour-on-table-beside-eggs-and-whisk-rgRbqFweGF0?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 - Blinking Neon CSS by https://codepen.io/DevchamploO/pen/NBWBGq
 - Flat Radio Button CSS by https://codepen.io/mblode/pen/VwGxaO
 - Airstream NF font license: 
   - https://www.1001fonts.com/airstream-font.html#license
   - https://www.1001fonts.com/licenses/ffc.html
-- city night background:
-  - <a href="https://www.freepik.com/free-vector/city-night_794406.htm#fromView=search&page=1&position=6&uuid=8e9f2add-aa18-4418-bc36-334748e6bf46">Image by freepik</a>
+- night sky-night ilnur kalimullin 1MSTM04CC6
+  - <a href="https://stocksnap.io/photo/sky-night-1MSTM04CC6">Photo</a> by <a href="https://stocksnap.io/author/33840">Ilnur Kalimullin</a> on <a href="https://stocksnap.io">StockSnap</a>

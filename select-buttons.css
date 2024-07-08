@@ -4,15 +4,21 @@
   align-items: center;
 }
 
+.button-label-container {
+  display: block;
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+  margin: 0.5em;
+}
 .button-label {
   display: inline-block;
+  cursor: pointer;
   align-content: center;
   text-align: center;
   width: 100%;
   height: 100%;
-  cursor: pointer;
   color: #292929;
-  border-radius: 50%;
   background: #efefef;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0 -3px 0 rgba(0, 0, 0, 0.22);
   transition: 0.3s;
@@ -38,18 +44,14 @@ label[for="custom-button"] {
   background-color: transparent;
 }
 
-#custom-duration:not([disabled]) {
-  box-shadow: 0 0 3px rgba(255, 0, 0, 1);
-}
-
-.button-label, .button-label-container {
-  transition: .25s transform ease-out;
-}
-
 .button-label span {
   font-size: 1em;
   font-family: "Lato", sans-serif;
-  font-family: "Airstream NF", cursive;
+}
+
+.button-label:active {
+  transform: translateY(2px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0px -1px 0 rgba(0, 0, 0, 0.22);
 }
 
 .button-label:hover {
@@ -58,29 +60,23 @@ label[for="custom-button"] {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0 -3px 0 rgba(0, 0, 0, 0.32);
 }
 
-.button-label:active {
-  transform: translateY(2px);
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0px -1px 0 rgba(0, 0, 0, 0.22);
-}
-
-.radio-input:checked + .button-label-container {
-  transform: rotate(120deg);
-}
-
 .radio-input:checked + .button-label-container .button-label {
-  transform: rotate(-120deg);
-}
-
-.radio-input:checked + .button-label {
   background: #4183D7;
   color: #efefef;
 }
 
-.radio-input:checked + .button-label:hover {
+.radio-input:checked + .button-label-container .button-label:hover {
   background: #2c75d2;
   color: #e2e2e2;
 }
 
+.radio-input:disabled + .button-label-container {
+  opacity: .5;
+}
+
+.radio-input:disabled + .button-label-container .button-label {
+  cursor: not-allowed;
+}
 
 .button-label-container:has(label[for="custom-button"]) {
   width: unset;
@@ -91,46 +87,20 @@ label[for="custom-button"] {
   position: relative;
 }
 
-.button-label-container {
-  display: block;
-  position: relative;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  border: 1px solid;
-  margin: 0.5em;
-}
 
-.button-label-container::before {
+
+.button-label::before {
  content: "";
- vertical-align: middle;
  margin: auto;
  position: absolute;
  display: block;
  left: 0;
  right: 0;
  top: -3px;
- bottom: calc(100% - 6px);
- width: 12px;
- height: 12px;
- transform: rotate(45deg);
- border: 1px solid #000;
- /* border-color: #ccc transparent transparent #ccc; */
+ border: 1px solid #777; */
  background-color: #efefef;
  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
  z-index: 0;
-}
-
-.button-label-onlight {
-    content: "";
-    width: 8px;
-    height: 8px;
-    background-color: #222;
-    border-radius: 50%;
-    position: absolute;
-    bottom: -5px;
-    left: calc(50% - 4px);
-    z-index: 40;
 }
 
 .radio-input:checked ~ .button-label-onlight {

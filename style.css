@@ -7,9 +7,21 @@ html, body {
 }
 
 body {
-  background-color: rgb(50, 50, 50);
   width: 100vw;
   overflow-x: hidden;
+  background: url('./assets/ilnur_kalimullin-1MSTM04CC6.jpg');
+  background-size: cover;
+}
+
+a {
+  font-weight: bold;
+  color: orange;
+  text-decoration: underline;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #de7fd8;
 }
 
 body::before {
@@ -19,9 +31,6 @@ body::before {
   position: fixed;
   top: 0;
   display: block;
-  background: url('./assets/bg-cropped.jpg') no-repeat top center;
-  background-size: cover;
-  filter: grayscale(50%);
 }
 
 form, form input, button {
@@ -50,20 +59,17 @@ input[type=number]:invalid {
 }
 
 #title {
-  font-family: "Airstream NF", cursive;
-  margin: 1rem 0;
+  margin: 0 auto;
   z-index: 20;
 }
 
 #convert-form {
-  font-family: "Airstream NF", cursive;
-  font-size: 1.5rem;
+  font-size: 1rem;
   display: flex;
   flex-flow: column nowrap;
   width: 100%;
   box-sizing: border-box;
-  background: #99d4c9;
-  border-radius: 22px;
+  border-radius: .5rem; 
   justify-content: center;
   margin: 2rem auto 2rem;
   padding: 2rem 3rem;
@@ -71,7 +77,8 @@ input[type=number]:invalid {
   z-index: 10;
   opacity: 1;
   transition: opacity 1s ease;
-
+  color: #ddd;
+  background: #233243;
 }
 
 form > * {
@@ -87,7 +94,6 @@ label[for="video-file"] {
 
 #file-input-button {
   cursor: pointer;
-  font-family: "Digital Dream";
   font-weight: bold;
   text-align: left;
   width: 100%;
@@ -98,12 +104,21 @@ label[for="video-file"] {
 
 #file-input {
   visibility: hidden;
+  height: 0px;
+  width: 0px;
 }
 
 input:not([type="file"]):not([disabled]) {
   font-weight: bold;
   padding: .5rem .75rem;
   border: 1px solid gray;
+}
+
+fieldset {
+  margin: 2rem 0 0;
+  border-width: 1px 0px 0 0px;
+  border-color: #777;
+  border-radius: 0;
 }
 
 fieldset#start-time-fieldset {
@@ -121,6 +136,10 @@ fieldset#start-time-fieldset input[name="start-time-hours"] {
   margin-left: 0;
 }
 
+fieldset > legend {
+  padding: 0 .5rem;
+}
+
 
 #convert-button:not([disabled]),
 #download-button:not([disabled]) {
@@ -128,9 +147,9 @@ fieldset#start-time-fieldset input[name="start-time-hours"] {
 }
 
 #convert-button {
-  font-family: "Airstream NF", cursive;
   font-size: 32px;
   border: none;
+  margin-top: 2rem;
   padding: .5rem .75rem;
   border-radius: 6px;
   background: sandybrown;
@@ -224,8 +243,15 @@ fieldset#start-time-fieldset input[name="start-time-hours"] {
   right: .5rem;
 }
 
+footer {
+  color: #ddd;
+}
 
 /* UTILS */
+.white {
+  color: white;
+}
+
 .digital-display {
   font-family: "Digital Dream";
   font-weight: bold;
