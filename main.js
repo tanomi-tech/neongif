@@ -74,6 +74,14 @@ ffmpeg.on("log", (log) => {
     hoursInput.max = hours;
     minutesInput.max = Math.round(Math.min(59.99, (hours * 60) + minutes) * 100) / 100;
     secondsInput.max = Math.round(Math.min(59.99, totalDurationSeconds) * 100) / 100;
+    durationInput.max = Math.round(totalDurationSeconds * 100) / 100;
+
+    secondsInput.value = '0';
+    secondsInput.dispatchEvent(new Event('input'));
+    durationInput.disabled = false;
+    durationInput.required = true;
+    customDuration.checked = true;
+    durationInput.value = '0.01';
 
     capturedDuration = durationSegments?.join(':') ?? null;
   }
