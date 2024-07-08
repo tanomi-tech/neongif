@@ -20,6 +20,7 @@ const fileInputBtn = document.getElementById('file-input-button');
 const hoursInput = document.querySelector('input[name="start-time-hours"]');
 const minutesInput = document.querySelector('input[name="start-time-minutes"]');
 const secondsInput = document.querySelector('input[name="start-time-seconds"]');
+const customDuration = document.querySelector('input[name="duration"][value="custom"]')
 const durationInput = document.querySelector('input[name="custom-duration"]');
 const durationFieldset = document.querySelectorAll('input[name="duration"]');
 
@@ -49,6 +50,13 @@ combineLatest(timeInputEventStreams)
     durationInput.max = Math.round(
         Math.max(0, (totalDurationSeconds ?? 0) - startTimeTotal) * 100
     ) / 100;
+
+    document
+      .querySelectorAll('input[name="duration"]:not([value="custom"]')
+      .forEach(preset => {
+        console.log(preset);
+        if (preset.value > totalDurationSeconds) preset.disabled = true; 
+      });
   });
 
 const BASE_URL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm';
