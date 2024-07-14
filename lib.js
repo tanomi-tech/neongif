@@ -78,6 +78,11 @@ const createUpdateProgressCb = (progressSectionNode, clipDuration) => frame => {
   }
 }
 
+/**
+ * TODO: make func to capture currently displayed preview window contents 
+ * and restore them upon new file upload.
+ */
+
 export {
   calcTotalDuration,
   createUpdateProgressCb,

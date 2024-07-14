@@ -9,13 +9,25 @@ html, body {
 body {
   width: 100vw;
   overflow-x: hidden;
-  background: url('./assets/ilnur_kalimullin-1MSTM04CC6.jpg');
-  background-size: cover;
+  background-color: #181926;
+}
+
+.bg {
+  position: fixed;
+  width: 100vw;
+  height: 80vh;
+  top: -5px;
+  left: -5px;
+  background: url('./assets/stars.svg');
+  background-size: contain;
+  background-repeat: repeat;
+  filter: blur(1px);
+  opacity: .4;
 }
 
 a {
   font-weight: bold;
-  color: orange;
+  color: #d67b31;
   text-decoration: underline;
 }
 
@@ -38,7 +50,7 @@ form, form input, button {
 }
 
 input[type=number]:invalid {
-  border: 2px solid red;
+  background-color: #4b2727;
   outline: none;
 }
 
@@ -78,7 +90,8 @@ input[type=number]:invalid {
   opacity: 1;
   transition: opacity 1s ease;
   color: #ddd;
-  background: #233243;
+  background: #2d2f3d;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
 
 form > * {
@@ -98,7 +111,6 @@ label[for="video-file"] {
   text-align: left;
   width: 100%;
   height: 100%;
-  border: 1px solid #adadad;
   height: 2rem;
 }
 
@@ -111,7 +123,6 @@ label[for="video-file"] {
 input:not([type="file"]):not([disabled]) {
   font-weight: bold;
   padding: .5rem .75rem;
-  border: 1px solid gray;
 }
 
 fieldset {
@@ -147,13 +158,15 @@ fieldset > legend {
 }
 
 #convert-button {
-  font-size: 32px;
+  /* text-transform: uppercase; */
+  /* font-weight: bold; */
+  font-size: 24px;
   border: none;
-  margin-top: 2rem;
+  margin-bottom: 2rem;
   padding: .5rem .75rem;
-  border-radius: 6px;
-  background: sandybrown;
+  background: blueviolet;
   color: #eee;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0 -3px 0 rgba(0, 0, 0, 0.22);
 }
 
 #convert-button[disabled] {
@@ -164,7 +177,8 @@ fieldset > legend {
   font-family: 'Open Sans', 'Noto', 'Ubuntu', sans-serif;
   position: relative;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
+  justify-content: center;
   align-items: center;
   height: 300px;
   background: #222;
@@ -172,11 +186,16 @@ fieldset > legend {
   border-radius: 1rem;
 }
 
+#preview-window:has(.progress-section) {
+  flex-flow: row nowrap;
+}
+
 .progress-section {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   width: 100%;
+  padding: 1rem 2rem;
 }
 
 .progress-bar, .progress-value {
@@ -202,7 +221,7 @@ fieldset > legend {
 }
 
 .progress-value {
-  background-color: blueviolet;
+  background-color: #9a6131;
   display: inline-block;
   height: 100%;
   width: 0%;
@@ -233,7 +252,7 @@ fieldset > legend {
   border: none;
   padding: .5rem .75rem;
   border-radius: 6px;
-  background: #99d4c9;
+  background: blueviolet;
   color: white;
   font-weight: bold;
   text-transform: uppercase;
@@ -248,6 +267,12 @@ footer {
 }
 
 /* UTILS */
+.form-input {
+  border-radius: .25rem;
+  background-color: #333;
+  color: #ddd;
+  border: 1px solid #414141;
+}
 .white {
   color: white;
 }

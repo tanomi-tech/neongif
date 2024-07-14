@@ -26,7 +26,6 @@ const durationFieldset = document.querySelectorAll('input[name="duration"]');
 
 durationFieldset.forEach(input => {
   input.addEventListener('change', () => {
-    console.log(input);
     durationInput.required = input.id === 'custom-button';
     durationInput.disabled = input.id !== 'custom-button';
     if (durationInput.disabled) durationInput.value = '';
@@ -172,7 +171,6 @@ fileInputBtn.addEventListener('click', () => {
 fileInput.addEventListener('change', async (event) => {
   file = event.target.files[0];
   fileInputBtn.innerText = file.name;
-  convertButton.disabled = !file;
 
   const buff = await file.arrayBuffer();
   await ffmpeg.writeFile(file.name, new Uint8Array(buff));
@@ -182,6 +180,8 @@ fileInput.addEventListener('change', async (event) => {
     '-i',
     file.name,
   ]);
+
+  convertButton.disabled = !file;
 });
 
 convertForm.addEventListener('submit', (event) => {

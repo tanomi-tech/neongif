@@ -9,29 +9,26 @@ html(lang='en')
     link(rel='stylesheet', href='./neon.css')
     link(rel='stylesheet', href='./select-buttons.css')
   body
+    .bg
     #wrapper
       div.title-wrapper
         h1#title.neon Ne
           span.flicker-slow o
           | nGi
           span.flicker-fast f
-        //- h1#title.neon D
-        //-   | ugh
-        //-   span.flicker-fast b
-        //-   | oy
         p.white Create GIFs from your video files directly from your browser. Privacy and security conscious&mdash; 
           | your data never goes to any server.
       form#convert-form.invisible(disabled)
         label(for='video-file')
-          button#file-input-button(type='button' style='padding: 0 1.1rem') Choose file...
+          button#file-input-button.form-input(type='button' style='padding: 0 1.1rem') Choose file...
           input#file-input(name='video-file', type='file', accept='video/*,.mkv')
         fieldset(id='start-time-fieldset')
           legend Start Time 
-          input(name='start-time-hours', type='number', min='0.0', max='0', step='1', style='')
+          input.form-input(name='start-time-hours', type='number', min='0.0', max='0', step='1', style='')
           |  hh
-          input(name='start-time-minutes', type='number', min='0.0', max='0', step='1', style='')
+          input.form-input(name='start-time-minutes', type='number', min='0.0', max='0', step='1', style='')
           |  mm
-          input(name='start-time-seconds', type='number', min='0.0', max='0', step='.01', style='', required)
+          input.form-input(name='start-time-seconds', type='number', min='0.0', max='0', step='.01', style='', value='0', required)
           |  ss
         fieldset
           legend
@@ -42,34 +39,32 @@ html(lang='en')
               div.button-label-container
                 label.button-label(for="1s-button")
                   span 1s
-              .button-label-onlight
 
             .button-control
               input(type="radio" name="duration" id="3s-button" class="hidden radio-input" value='3.0')
               div.button-label-container
                 label.button-label(for="3s-button")
                   span 3s
-              .button-label-onlight
 
             .button-control
               input(type="radio" name="duration" id="5s-button" class="hidden radio-input" value='5.0')
               div.button-label-container
                 label.button-label(for="5s-button")
                   span 5s
-              .button-label-onlight
 
             .button-control
               input(type="radio" name="duration" id="custom-button" class="hidden radio-input" value='custom')
               div.button-label-container
                 label.button-label(for='custom-button') 
                   span Custom
-              .button-label-onlight
 
-            input(name='custom-duration', id='custom-duration' type='number', min='.01', max='0', step='.01' disabled)
-            | &nbsp;ss
-        button#convert-button(disabled='') Convert
+            div.custom-duration-wrap
+              input.form-input(name='custom-duration', id='custom-duration' type='number', min='.01', max='0', step='.01' disabled)
+              | &nbsp;ss
         #preview-window
+          button#convert-button(disabled='') Convert
+          div(style='color: #aaa; display: block; text-align: center; width: 100%') Your GIF will display here.
       footer
-        span Made with ❤️ by 
+        span Made with 🧡 by 
           a(href="https://tanomitech.com/") Tanomi Technologies
     script(type='module', src='main.js')
