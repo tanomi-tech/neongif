@@ -18,7 +18,7 @@ body {
   height: 80vh;
   top: -5px;
   left: -5px;
-  background: url('./assets/stars.svg');
+  background: url('../stars.svg');
   background-size: contain;
   background-repeat: repeat;
   filter: blur(1px);

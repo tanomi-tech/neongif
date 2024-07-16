@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Airstream NF";
-  src: url('./assets/fonts/AirstreamNF.otf');
+  src: url('../fonts/AirstreamNF.otf');
   /* src: url('fonts/fira/eot/FiraSans-Regular.eot') format('embedded-opentype'), */
   /*      url('fonts/fira/woff2/FiraSans-Regular.woff2') format('woff2'), */
   /*      url('fonts/fira/woff/FiraSans-Regular.woff') format('woff'), */
