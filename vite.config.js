@@ -6,4 +6,13 @@ export default defineConfig({
   server: { https: true },
   publicDir: 'public',
   plugins: [ mkcert(), pugPlugin() ],
+  build: {
+    target: 'es2022',
+    rollupOptions: {
+      input: 'public/main.js',
+      output: {
+        entryFileNames: '[name].js'
+      }
+    },
+  },
 });
