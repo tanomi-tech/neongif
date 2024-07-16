@@ -9,7 +9,7 @@ export default defineConfig({
   build: {
     target: 'es2022',
     rollupOptions: {
-      input: 'public/main.js',
+      input: ['index.html', 'public/main.js'],
       output: {
         entryFileNames: '[name].js'
       }
