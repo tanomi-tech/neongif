@@ -4,6 +4,6 @@ import pugPlugin from 'vite-plugin-pug'
 
 export default defineConfig({
   server: { https: true },
-  assetsInclude: ['assets/'],
+  publicDir: 'assets/',
   plugins: [ mkcert(), pugPlugin() ],
 });
