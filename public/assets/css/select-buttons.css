@@ -24,9 +24,9 @@
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0 -3px 0 rgba(0, 0, 0, 0.22);
   transition: 0.3s;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 
   position: relative;
   z-index: 10;
@@ -89,16 +89,16 @@ label[for="custom-button"] {
 }
 
 .button-label::before {
- content: "";
- margin: auto;
- position: absolute;
- display: block;
- left: 0;
- right: 0;
- top: -3px;
- background-color: #efefef;
- box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
- z-index: 0;
+  content: "";
+  margin: auto;
+  position: absolute;
+  display: block;
+  left: 0;
+  right: 0;
+  top: -3px;
+  background-color: #efefef;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  z-index: 0;
 }
 
 /* MEDIA QUERIES */
