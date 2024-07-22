@@ -1,5 +1,6 @@
-import { FFmpeg } from "./node_modules/@ffmpeg/ffmpeg/dist/esm/index.js";
-import { toBlobURL } from "./node_modules/@ffmpeg/util/dist/esm/index.js";
+import { FFmpeg } from '@ffmpeg/ffmpeg';
+import { toBlobURL } from '@ffmpeg/util';
+import { fromEvent, combineLatest, startWith, map } from 'rxjs';
 import { 
   calcTotalDuration, 
   createUpdateProgressCb,
@@ -8,7 +9,6 @@ import {
   kebabToCamel,
   parseTimestamp,
 } from './lib.js';
-import { fromEvent, combineLatest, startWith, map } from './node_modules/rxjs/dist/esm';
 
 const convertButton = document.getElementById('convert-button');
 const convertForm = document.getElementById('convert-form');
@@ -17,12 +17,12 @@ const previewWindow = document.getElementById('preview-window');
 // Form Inputs
 const fileInput = document.getElementById('file-input'); 
 const fileInputBtn = document.getElementById('file-input-button'); 
-const hoursInput = document.querySelector('input[name="start-time-hours"]');
-const minutesInput = document.querySelector('input[name="start-time-minutes"]');
-const secondsInput = document.querySelector('input[name="start-time-seconds"]');
-const customDuration = document.querySelector('input[name="duration"][value="custom"]')
-const durationInput = document.querySelector('input[name="custom-duration"]');
-const durationFieldset = document.querySelectorAll('input[name="duration"]');
+const hoursInput = document.querySelector(`input[name='start-time-hours']`);
+const minutesInput = document.querySelector(`input[name='start-time-minutes']`);
+const secondsInput = document.querySelector(`input[name='start-time-seconds']`);
+const customDuration = document.querySelector(`input[name='duration'][value='custom']`)
+const durationInput = document.querySelector(`input[name='custom-duration']`);
+const durationFieldset = document.querySelectorAll(`input[name='duration']`);
 
 durationFieldset.forEach(input => {
   input.addEventListener('change', () => {
@@ -51,22 +51,22 @@ combineLatest(timeInputEventStreams)
     ) / 100;
 
     document
-      .querySelectorAll('input[name="duration"]:not([value="custom"]')
+      .querySelectorAll(`input[name='duration']:not([value='custom']`)
       .forEach(preset => {
-        console.log(preset);
         if (preset.value > totalDurationSeconds) preset.disabled = true; 
       });
   });
 
-const BASE_URL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm';
 const ffmpeg = new FFmpeg({ log: true });
 
+const BASE_URL = 'https://unpkg.com/@ffmpeg/core-mt@0.12.6/dist/esm';
 await ffmpeg.load({
   coreURL: await toBlobURL(`${BASE_URL}/ffmpeg-core.js`, 'text/javascript'),
   wasmURL: await toBlobURL(`${BASE_URL}/ffmpeg-core.wasm`, 'application/wasm'),
+  workerURL: await toBlobURL(`${BASE_URL}/ffmpeg-core.worker.js`, 'text/javascript'),
 });
 
-ffmpeg.on("log", (log) => {
+ffmpeg.on('log', (log) => {
   if (!capturedDuration && log.message.trim().startsWith('Duration:')) {
     const durationSegments = log.message
       ?.trim()
@@ -96,7 +96,7 @@ ffmpeg.on("log", (log) => {
   console.log(log.message);
 });
 
-// ffmpeg.on("progress", ({ progress }) => {});
+// ffmpeg.on('progress', ({ progress }) => {});
 
 async function processLargeVideo(submission) {
   const { 
@@ -109,7 +109,6 @@ async function processLargeVideo(submission) {
   } = submission;
 
   const timestamp = parseTimestamp(hh, mm, ss);
-  console.log(timestamp, duration, file);
   const basename = file.name.split('.');
   basename.pop();
   const outputName = `${basename.join()}.gif`;

@@ -1,14 +1,17 @@
 {
-  "name": "NeonGIF Converter",
+  "name": "neongif",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "cp -r ./node_modules ./public/ && vite build",
+    "build:exp": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ffmpeg/core": "^0.12.6",
+    "@ffmpeg/core-mt": "^0.12.6",
     "@ffmpeg/ffmpeg": "^0.12.10",
     "@ffmpeg/util": "^0.12.1",
     "browser-fs-access": "^0.35.0",
@@ -16,6 +19,7 @@
     "rxjs": "^7.8.1"
   },
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.2.3",
     "vite": "^5.2.0",
     "vite-plugin-mkcert": "^1.17.5",
     "vite-plugin-pug": "^0.3.2"
