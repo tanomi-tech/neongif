@@ -40,3 +40,10 @@
   }
 }
 
+/* MEDIA QUERIES */
+@media (max-width: 760px) {
+  .flicker-slow,
+  .flicker-fast {
+    animation: none;
+  }
+}
