@@ -24,12 +24,15 @@ html(lang='en')
           input#file-input(name='video-file', type='file', accept='video/*,.mkv')
         fieldset(id='start-time-fieldset')
           legend Start Time 
-          input.form-input(name='start-time-hours', type='number', min='0.0', max='0', step='1', style='')
-          |  hh
-          input.form-input(name='start-time-minutes', type='number', min='0.0', max='0', step='1', style='')
-          |  mm
-          input.form-input(name='start-time-seconds', type='number', min='0.0', max='0', step='.01', style='', value='0', required)
-          |  ss
+          .form-input-wrapper
+            input.form-input(name='start-time-hours', type='number', min='0.0', max='0', step='1', style='')
+            |  hh
+          .form-input-wrapper
+            input.form-input(name='start-time-minutes', type='number', min='0.0', max='0', step='1', style='')
+            |  mm
+          .form-input-wrapper
+            input.form-input(name='start-time-seconds', type='number', min='0.0', max='0', step='.01', style='', value='0', required)
+            |  ss
         fieldset
           legend
             | Duration (seconds) 

@@ -1,6 +1,7 @@
 .neon {
   font-family: 'Airstream NF', cursive;
   font-size: 140px;
+  font-size: clamp(6rem, calc(6rem + 1vw), 10rem);
   color: #FFD5FF;
   font-weight: 400;
   letter-spacing: 4px;

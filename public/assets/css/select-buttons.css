@@ -100,3 +100,10 @@ label[for="custom-button"] {
  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
  z-index: 0;
 }
+
+/* MEDIA QUERIES */
+@media (max-width: 760px) {
+  .button-wrap {
+    flex-flow: row wrap;
+  }
+}
