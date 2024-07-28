@@ -19,6 +19,9 @@ html(lang='en')
           span.flicker-fast f
         p.white Create GIFs from your video files directly from your browser. Privacy and security conscious&mdash; 
           | your data never goes to any server.
+      div.form-load-icon
+        span.fa.fa-solid.fa-empire(style="margin-right: 1rem")
+        | Loading...&nbsp;&nbsp;&nbsp;
       form#convert-form.invisible(disabled)
         label(for='video-file')
           button#file-input-button.form-input(type='button' style='padding: 0 1.1rem') Choose file...
@@ -69,12 +72,14 @@ html(lang='en')
           button#convert-button(disabled='') Convert
           div(style='color: #aaa; display: block; text-align: center; width: 100%') Your GIF will display here.
       footer
-        span Made with 🧡 by 
+        div Made with 🧡 by 
           a(href='https://tanomitech.com/', target='_blank') Tanomi Technologies
-        span(style='margin: 0 .25rem 0 .5rem') |
-        a.with-github-icon(href='https://github.com/tanomi-tech/neongif', target='_blank') 
-          span.fa.fa-brands.fa-github(style='margin-right: .5rem')
-          span.github-text GitHub
-        span(style='margin: 0 .25rem 0 .5rem') |
-        a(href='credits.txt') Credits (in progress)
+        .sitemap
+          a.with-github-icon(href='https://github.com/tanomi-tech/neongif', target='_blank') 
+            span.fa.fa-brands.fa-github(style='margin-right: .5rem')
+            span.github-text GitHub
+          span(style='margin: 0 .25rem 0 .5rem') |
+          a.report-issue(href='https://github.com/tanomi-tech/neongif/issues', target='_blank') Report an Issue
+          span(style='margin: 0 .25rem 0 .5rem') |
+          a.credits(href='credits.txt') Credits
     script(type='module', src='main.js')

@@ -202,5 +202,12 @@ convertForm.addEventListener('submit', (event) => {
     });
 });
 
+
+/**
+  * Loading finished setup
+  */
+const loadingIndicator = document.querySelector('.form-load-icon');
+loadingIndicator?.classList?.add('hidden');
+
 convertForm?.classList?.remove('invisible');
 

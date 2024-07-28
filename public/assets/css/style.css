@@ -113,6 +113,20 @@ input[type=number]:invalid {
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
 }
 
+.form-load-icon {
+  margin-top: 5rem;
+  text-align: center;
+  color: white;
+  height: 3rem;
+  width: 100%;
+  font-size: 1.25rem;
+}
+
+.form-load-icon .fa {
+  font-family: FontAwesome;
+  animation: rotate 2s infinite linear;
+}
+
 form > * {
   margin-top: .5rem;
   margin-bottom: .5rem;
@@ -287,6 +301,14 @@ fieldset > legend {
 
 footer {
   color: #ddd;
+  text-align: center;
+}
+
+.sitemap {
+  margin: 1rem auto;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
 }
 
 /* MEDIA QUERIES */
@@ -350,3 +372,19 @@ footer {
 .hidden {
   display: none;
 }
+
+/* ANIMATIONS */
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
