@@ -8,6 +8,7 @@ html(lang='en')
     link(rel='stylesheet', href='assets/css/style.css')
     link(rel='stylesheet', href='assets/css/neon.css')
     link(rel='stylesheet', href='assets/css/select-buttons.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
   body
     .bg
     #wrapper
@@ -38,25 +39,25 @@ html(lang='en')
             | Duration (seconds) 
           div.button-wrap
             .button-control
-              input(type="radio" name="duration" id="1s-button" class="hidden radio-input" value='1.0' required)
+              input(type='radio' name='duration' id='1s-button' class='hidden radio-input' value='1.0' required)
               div.button-label-container
-                label.button-label(for="1s-button")
+                label.button-label(for='1s-button')
                   span 1s
 
             .button-control
-              input(type="radio" name="duration" id="3s-button" class="hidden radio-input" value='3.0')
+              input(type='radio' name='duration' id='3s-button' class='hidden radio-input' value='3.0')
               div.button-label-container
-                label.button-label(for="3s-button")
+                label.button-label(for='3s-button')
                   span 3s
 
             .button-control
-              input(type="radio" name="duration" id="5s-button" class="hidden radio-input" value='5.0')
+              input(type='radio' name='duration' id='5s-button' class='hidden radio-input' value='5.0')
               div.button-label-container
-                label.button-label(for="5s-button")
+                label.button-label(for='5s-button')
                   span 5s
 
             .button-control
-              input(type="radio" name="duration" id="custom-button" class="hidden radio-input" value='custom')
+              input(type='radio' name='duration' id='custom-button' class='hidden radio-input' value='custom')
               div.button-label-container
                 label.button-label(for='custom-button') 
                   span Custom
@@ -69,5 +70,11 @@ html(lang='en')
           div(style='color: #aaa; display: block; text-align: center; width: 100%') Your GIF will display here.
       footer
         span Made with 🧡 by 
-          a(href="https://tanomitech.com/") Tanomi Technologies
+          a(href='https://tanomitech.com/', target='_blank') Tanomi Technologies
+        span(style='margin: 0 .25rem 0 .5rem') |
+        a.with-github-icon(href='https://github.com/tanomi-tech/neongif', target='_blank') 
+          span.fa.fa-brands.fa-github(style='margin-right: .5rem')
+          span.github-text GitHub
+        span(style='margin: 0 .25rem 0 .5rem') |
+        a(href='credits.txt') Credits (in progress)
     script(type='module', src='main.js')

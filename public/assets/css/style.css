@@ -36,6 +36,23 @@ a:hover {
   color: #de7fd8;
 }
 
+a.with-github-icon,
+a.with-github-icon span {
+  text-decoration: none;
+}
+
+a.with-github-icon .github-text {
+  text-decoration: underline;
+}
+
+a.with-github-icon:hover .github-text {
+  text-decoration: none;
+}
+
+.fa.fa-brands.fa-github {
+  font-size: 1.2em;
+}
+
 body::before {
   content: '';
   width: 100vw;
