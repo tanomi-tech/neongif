@@ -338,9 +338,9 @@ footer {
 /* UTILS */
 .form-input {
   border-radius: .25rem;
-  background-color: #333;
+  background-color: #242533;
   color: #ddd;
-  border: 1px solid #414141;
+  border: 1px solid #393a49;
   padding: .5rem .75rem;
 }
 
