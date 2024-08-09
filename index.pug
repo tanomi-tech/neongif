@@ -33,33 +33,33 @@ html(lang='en')
           | nGi
           span.flicker-fast f
       div.form-load-icon
-        span.fa.fa-solid.fa-empire(style="margin-right: 1rem")
+        span.fa.fa-solid.fa-empire(style='margin-right: 1rem')
         | Loading...&nbsp;&nbsp;&nbsp;
       form#convert-form.invisible(disabled)
         p.white Create GIFs from your video files completely free from your browser. Privacy and security conscious&mdash; 
           | your data never goes to any server.
         label(for='video-file')
-          button#file-input-button.form-input(type='button' style='padding: 0 1.1rem') Choose file...
+          button#file-input-button.form-input(type='button' style='padding: 0 1.1rem') Choose video file...
           input#file-input(name='video-file', type='file', accept='video/*,.mkv')
-        div(style="display: flex; flex-flow: row wrap")
+        div(style='display: flex; flex-flow: row wrap')
           fieldset#start-time-fieldset
             legend 
               | Start Time (
-              span(data-highlight="hh") hh
+              span(data-highlight='hh') hh
               | &nbsp;:&nbsp;
-              span(data-highlight="mm") mm
+              span(data-highlight='mm') mm
               | &nbsp;:&nbsp;
-              span(data-highlight="ss.ss") ss.ss
+              span(data-highlight='ss.ss') ss.ss
               | )
             .form-input-wrapper
               input.form-input.no-right-radius(
-                name='start-time-hours', type='number', min='0.0', max='0', step='1', style='', data-highlight-target="hh"
+                name='start-time-hours', type='number', min='0.0', max='0', step='1', style='', data-highlight-target='hh'
               )
               input.form-input.no-radius.no-border-x(
-                name='start-time-minutes', type='number', min='0.0', max='0', step='1', style='', data-highlight-target="mm"
+                name='start-time-minutes', type='number', min='0.0', max='0', step='1', style='', data-highlight-target='mm'
               )
               input.form-input.no-left-radius(
-                name='start-time-seconds', type='number', min='0.0', max='0', step='.01', style='', value='0', required, data-highlight-target="ss.ss"
+                name='start-time-seconds', type='number', min='0.0', max='0', step='.01', style='', value='0', required, data-highlight-target='ss.ss'
               )
           fieldset#duration-fieldset
             legend
@@ -68,28 +68,28 @@ html(lang='en')
               .button-control
                 input(type='radio' name='duration' id='1s-button' class='hidden radio-input' value='1.0' required)
                 div.button-label-container
-                  button(role="button" type="button")
+                  button(role='button' type='button')
                     label.button-label(for='1s-button')
                       span 1s
 
               .button-control
                 input(type='radio' name='duration' id='3s-button' class='hidden radio-input' value='3.0')
                 div.button-label-container
-                  button(role="button" type="button")
+                  button(role='button' type='button')
                     label.button-label(for='3s-button')
                       span 3s
 
               .button-control
                 input(type='radio' name='duration' id='5s-button' class='hidden radio-input' value='5.0')
                 div.button-label-container
-                  button(role="button" type="button")
+                  button(role='button' type='button')
                     label.button-label(for='5s-button')
                       span 5s
 
               .button-control
                 input(type='radio' name='duration' id='custom-button' class='hidden radio-input' value='custom')
                 div.button-label-container
-                  button(role="button" type="button")
+                  button(role='button' type='button')
                     label.button-label(for='custom-button') 
                       span Custom
 
