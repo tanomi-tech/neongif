@@ -4,6 +4,7 @@ import { fromEvent, combineLatest, startWith, map } from '../node_modules/rxjs/d
 import { 
   calcTotalDuration, 
   createUpdateProgressCb,
+  getHighlightTarget,
   initProgressSection,
   isFrameMetadata,
   kebabToCamel,
@@ -23,6 +24,19 @@ const secondsInput = document.querySelector(`input[name='start-time-seconds']`);
 const customDuration = document.querySelector(`input[name='duration'][value='custom']`)
 const durationInput = document.querySelector(`input[name='custom-duration']`);
 const durationFieldset = document.querySelectorAll(`input[name='duration']`);
+const startTimeInputs = [hoursInput, minutesInput, secondsInput];
+
+startTimeInputs.forEach(timeInput => {
+  timeInput.addEventListener('blur', () => {
+    const target = getHighlightTarget(timeInput, convertForm);
+    target?.classList?.remove('highlight');
+  });
+
+  timeInput.addEventListener('focus', () => {
+    const target = getHighlightTarget(timeInput, convertForm);
+    target?.classList?.add('highlight');
+  });
+});
 
 const durationButtons = [ ...document.querySelectorAll('.button-control button') ];
 durationButtons.forEach(btn => {
@@ -44,7 +58,7 @@ durationFieldset.forEach(input => {
 
 let file, totalDurationSeconds, capturedDuration = null;
 
-const timeInputEventStreams = [hoursInput, minutesInput, secondsInput]
+const timeInputEventStreams = startTimeInputs
   .map(input => fromEvent(input, 'input')
   .pipe(startWith(null)));
 

@@ -398,6 +398,11 @@ footer {
   border-right-width: 0px;
 }
 
+[data-highlight].highlight {
+  font-weight: bold;
+  color: #d67b31;
+}
+
 /* ANIMATIONS */
 @keyframes rotate {
   0% {

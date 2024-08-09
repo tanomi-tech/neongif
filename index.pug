@@ -43,11 +43,24 @@ html(lang='en')
           input#file-input(name='video-file', type='file', accept='video/*,.mkv')
         div(style="display: flex; flex-flow: row wrap")
           fieldset#start-time-fieldset
-            legend Start Time (hh:mm:ss.ms)
+            legend 
+              | Start Time (
+              span(data-highlight="hh") hh
+              | &nbsp;:&nbsp;
+              span(data-highlight="mm") mm
+              | &nbsp;:&nbsp;
+              span(data-highlight="ss.ss") ss.ss
+              | )
             .form-input-wrapper
-              input.form-input.no-right-radius(name='start-time-hours', type='number', min='0.0', max='0', step='1', style='')
-              input.form-input.no-radius(name='start-time-minutes', type='number', min='0.0', max='0', step='1', style='')
-              input.form-input.no-left-radius(name='start-time-seconds', type='number', min='0.0', max='0', step='.01', style='', value='0', required)
+              input.form-input.no-right-radius(
+                name='start-time-hours', type='number', min='0.0', max='0', step='1', style='', data-highlight-target="hh"
+              )
+              input.form-input.no-radius.no-border-x(
+                name='start-time-minutes', type='number', min='0.0', max='0', step='1', style='', data-highlight-target="mm"
+              )
+              input.form-input.no-left-radius(
+                name='start-time-seconds', type='number', min='0.0', max='0', step='.01', style='', value='0', required, data-highlight-target="ss.ss"
+              )
           fieldset#duration-fieldset
             legend
               | Duration (seconds) 

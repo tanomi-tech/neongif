@@ -78,6 +78,12 @@ const createUpdateProgressCb = (progressSectionNode, clipDuration) => frame => {
   }
 }
 
+const getHighlightTarget = (elm, container = null) => {
+  const targetId = elm.dataset.highlightTarget;
+    if (!targetId) return null;
+    return (container ?? document).querySelector(`[data-highlight="${targetId}"]`);
+} 
+
 /**
  * TODO: make func to capture currently displayed preview window contents 
  * and restore them upon new file upload.
@@ -86,6 +92,7 @@ const createUpdateProgressCb = (progressSectionNode, clipDuration) => frame => {
 export {
   calcTotalDuration,
   createUpdateProgressCb,
+  getHighlightTarget,
   initProgressSection,
   isFrameMetadata,
   kebabToCamel,
