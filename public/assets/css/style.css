@@ -170,7 +170,7 @@ input:not([type="file"]):not([disabled]) {
 }
 
 fieldset {
-  margin: 2rem 0 0;
+  margin: 1rem 0 0;
   border-width: 1px 0px 0 0px;
   border-color: #777;
   border-radius: 0;
@@ -348,7 +348,6 @@ footer {
   }
 
   fieldset#start-time-fieldset .form-input-wrapper {
-    margin-top: 1rem;
     margin-left: 0;
     margin-right: 0;
   }
