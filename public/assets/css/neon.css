@@ -5,7 +5,17 @@
   color: #FFD5FF;
   font-weight: 400;
   letter-spacing: 4px;
-  text-shadow: 1px 0px 4px #FFD5FF, 2px 0px 4px #FFD5FF, 3px 0px 4px #FFD5FF, 2px 0px 3px #D42CCA, 2px 3px 15px #D42CCA, 2px 0px 15px, 5px 0px 125px, 20px 0vw 200px #D42CCA, 40px 0vw 200px #D42CCA;
+  /* text-shadow: 1px 0px 4px #FFD5FF, 2px 0px 4px #FFD5FF, 3px 0px 4px #FFD5FF, 2px 0px 3px #D42CCA, 2px 3px 15px #D42CCA, 2px 0px 15px, 5px 0px 125px, 20px 0vw 200px #D42CCA, 40px 0vw 200px #D42CCA; */
+  text-shadow: 
+    1px 0px 4px #FFD5FF, 
+    2px 0px 4px #FFD5FF, 
+    3px 0px 4px #FFD5FF, 
+    2px 0px 3px #D42CCA, 
+    2px 3px 15px #D42CCA, 
+    2px 0px 15px, 
+    5px 0px 125px, 
+    20px 0vw 150px #D42CCA, 
+    40px 0vw 150px #D42CCA;
 }
 
 .flicker-slow {

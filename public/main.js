@@ -24,6 +24,15 @@ const customDuration = document.querySelector(`input[name='duration'][value='cus
 const durationInput = document.querySelector(`input[name='custom-duration']`);
 const durationFieldset = document.querySelectorAll(`input[name='duration']`);
 
+const durationButtons = [ ...document.querySelectorAll('.button-control button') ];
+durationButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const relativeInput = btn.closest('.button-control').querySelector('input');
+    relativeInput.checked = true;
+    relativeInput.dispatchEvent(new Event('change'));
+  });
+});
+
 durationFieldset.forEach(input => {
   input.addEventListener('change', () => {
     durationInput.required = input.id === 'custom-button';
@@ -208,6 +217,10 @@ convertForm.addEventListener('submit', (event) => {
   */
 const loadingIndicator = document.querySelector('.form-load-icon');
 loadingIndicator?.classList?.add('hidden');
+setTimeout(() => {
+  document.querySelectorAll('.flicker-fast, .flicker-slow')
+    ?.forEach(elm => elm.classList.remove('flicker-fast', 'flicker-slow'));
+}, 5000);
 
 convertForm?.classList?.remove('invisible');
 

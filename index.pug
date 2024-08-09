@@ -1,7 +1,7 @@
 doctype html
 html(lang='en')
   head
-    title NeonGIF &ndash; create GIFs online from video files, secure, anonymous, and serverless
+    title NeonGIF &ndash; free online GIF converter for your video files, no account required
 
     meta(charset='UTF-8')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
@@ -32,57 +32,57 @@ html(lang='en')
           span.flicker-slow o
           | nGi
           span.flicker-fast f
-        p.white Create GIFs from your video files directly from your browser. Privacy and security conscious&mdash; 
-          | your data never goes to any server.
       div.form-load-icon
         span.fa.fa-solid.fa-empire(style="margin-right: 1rem")
         | Loading...&nbsp;&nbsp;&nbsp;
       form#convert-form.invisible(disabled)
+        p.white Create GIFs from your video files completely free from your browser. Privacy and security conscious&mdash; 
+          | your data never goes to any server.
         label(for='video-file')
           button#file-input-button.form-input(type='button' style='padding: 0 1.1rem') Choose file...
           input#file-input(name='video-file', type='file', accept='video/*,.mkv')
-        fieldset(id='start-time-fieldset')
-          legend Start Time 
-          .form-input-wrapper
-            input.form-input(name='start-time-hours', type='number', min='0.0', max='0', step='1', style='')
-            |  hh
-          .form-input-wrapper
-            input.form-input(name='start-time-minutes', type='number', min='0.0', max='0', step='1', style='')
-            |  mm
-          .form-input-wrapper
-            input.form-input(name='start-time-seconds', type='number', min='0.0', max='0', step='.01', style='', value='0', required)
-            |  ss
-        fieldset
-          legend
-            | Duration (seconds) 
-          div.button-wrap
-            .button-control
-              input(type='radio' name='duration' id='1s-button' class='hidden radio-input' value='1.0' required)
-              div.button-label-container
-                label.button-label(for='1s-button')
-                  span 1s
+        div(style="display: flex; flex-flow: row wrap")
+          fieldset#start-time-fieldset
+            legend Start Time (hh:mm:ss.ms)
+            .form-input-wrapper
+              input.form-input.no-right-radius(name='start-time-hours', type='number', min='0.0', max='0', step='1', style='')
+              input.form-input.no-radius(name='start-time-minutes', type='number', min='0.0', max='0', step='1', style='')
+              input.form-input.no-left-radius(name='start-time-seconds', type='number', min='0.0', max='0', step='.01', style='', value='0', required)
+          fieldset#duration-fieldset
+            legend
+              | Duration (seconds) 
+            div.button-wrap
+              .button-control
+                input(type='radio' name='duration' id='1s-button' class='hidden radio-input' value='1.0' required)
+                div.button-label-container
+                  button(role="button" type="button")
+                    label.button-label(for='1s-button')
+                      span 1s
 
-            .button-control
-              input(type='radio' name='duration' id='3s-button' class='hidden radio-input' value='3.0')
-              div.button-label-container
-                label.button-label(for='3s-button')
-                  span 3s
+              .button-control
+                input(type='radio' name='duration' id='3s-button' class='hidden radio-input' value='3.0')
+                div.button-label-container
+                  button(role="button" type="button")
+                    label.button-label(for='3s-button')
+                      span 3s
 
-            .button-control
-              input(type='radio' name='duration' id='5s-button' class='hidden radio-input' value='5.0')
-              div.button-label-container
-                label.button-label(for='5s-button')
-                  span 5s
+              .button-control
+                input(type='radio' name='duration' id='5s-button' class='hidden radio-input' value='5.0')
+                div.button-label-container
+                  button(role="button" type="button")
+                    label.button-label(for='5s-button')
+                      span 5s
 
-            .button-control
-              input(type='radio' name='duration' id='custom-button' class='hidden radio-input' value='custom')
-              div.button-label-container
-                label.button-label(for='custom-button') 
-                  span Custom
+              .button-control
+                input(type='radio' name='duration' id='custom-button' class='hidden radio-input' value='custom')
+                div.button-label-container
+                  button(role="button" type="button")
+                    label.button-label(for='custom-button') 
+                      span Custom
 
-            div.custom-duration-wrap
-              input.form-input(name='custom-duration', id='custom-duration' type='number', min='.01', max='0', step='.01' disabled)
-              | &nbsp;ss
+              div.custom-duration-wrap
+                input.form-input(name='custom-duration', id='custom-duration' type='number', min='.01', max='0', step='.01' disabled)
+                | &nbsp;ss
         #preview-window
           button#convert-button(disabled='') Convert
           div(style='color: #aaa; display: block; text-align: center; width: 100%') Your GIF will display here.
