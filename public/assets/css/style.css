@@ -12,9 +12,9 @@ body {
   background-color: #181926;
 }
 
+a:focus-visible,
 input:focus-visible, 
 button:focus-visible {
-  position:relative;
   z-index: 20;
   outline: 1px solid white;
 }
@@ -32,13 +32,18 @@ button:focus-visible {
   opacity: .4;
 }
 
-a {
+a, .link {
+  font-size: 1rem;
   font-weight: bold;
   color: #d67b31;
   text-decoration: underline;
+  background: none;
+  outline: 0;
+  border: 0;
 }
 
-a:hover {
+a:hover, .link:hover {
+  cursor: pointer;
   text-decoration: none;
   color: #de7fd8;
 }
@@ -71,7 +76,7 @@ body::before {
 
 form,
 form input,
-button {
+form button {
   font-size: 18px;
 }
 

@@ -27,6 +27,7 @@ html(lang='en')
     link(rel='stylesheet', href='assets/css/style.css')
     link(rel='stylesheet', href='assets/css/neon.css')
     link(rel='stylesheet', href='assets/css/select-buttons.css')
+    link(rel='stylesheet', href='assets/css/a11y-dialog.css')
     link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
   body
     .bg
@@ -113,6 +114,58 @@ html(lang='en')
           span(style='margin: 0 .5rem 0 .5rem') |
           a.report-issue(href='https://github.com/tanomi-tech/neongif/issues', target='_blank') Report an Issue
           span(style='margin: 0 .5rem 0 .5rem') |
-          a.credits(href='credits.txt') Credits
+          button#credits-button.link(data-a11y-dialog-show='credits-dialog') Credits
+
+
+    #credits-dialog.dialog-container(
+      role='dialog' 
+      aria-modal='true' 
+      aria-hidden='true'
+      aria-labelledby='my-dialog-title'
+      aria-describedby='my-dialog-body'
+    )
+      .dialog-overlay(data-a11y-dialog-hide='')
+      .dialog-content(role='document')
+        button.dialog-close(data-a11y-dialog-hide='', aria-label='Close this dialog window')
+          svg.svg-icon(viewBox='0 0 20 20')
+            path(fill='white', d='M15.898,4.045c-0.271-0.272-0.713-0.272-0.986,0l-4.71,4.711L5.493,4.045c-0.272-0.272-0.714-0.272-0.986,0s-0.272,0.714,0,0.986l4.709,4.711l-4.71,4.711c-0.272,0.271-0.272,0.713,0,0.986c0.136,0.136,0.314,0.203,0.492,0.203c0.179,0,0.357-0.067,0.493-0.203l4.711-4.711l4.71,4.711c0.137,0.136,0.314,0.203,0.494,0.203c0.178,0,0.355-0.067,0.492-0.203c0.273-0.273,0.273-0.715,0-0.986l-4.711-4.711l4.711-4.711C16.172,4.759,16.172,4.317,15.898,4.045z')
+        span#my-dialog-title Special thanks to: (section in progress)
+        ul#my-dialog-body
+          li
+            | Blinking Neon CSS by 
+            a(href='https://codepen.io/DevchamploO/pen/NBWBGq') https://codepen.io/DevchamploO/pen/NBWBGq
+          li
+            | Flat Radio Button CSS by 
+            a(href='https://codepen.io/mblode/pen/VwGxaO') https://codepen.io/mblode/pen/VwGxaO
+          li
+            | Airstream NF font license: 
+            ul
+              li
+                a(href='https://www.1001fonts.com/airstream-font.html#license') https://www.1001fonts.com/airstream-font.html#license
+              li
+                a(href='https://www.1001fonts.com/licenses/ffc.html') https://www.1001fonts.com/licenses/ffc.html
+          li
+            | night sky-night ilnur kalimullin 1MSTM04CC6
+            ul
+              li
+                a(href='https://stocksnap.io/photo/sky-night-1MSTM04CC6') Photo
+                |  by 
+                a(href='https://stocksnap.io/author/33840') Ilnur Kalimullin
+                |  on 
+                a(href='https://stocksnap.io') StockSnap
+          li
+            | summer night love star background
+            ul
+              li
+                | Image by 
+                a(href=' https://www.vectorportal.com') Vectorportal.com
+                | ,  
+                a.text(href='https://creativecommons.org/licenses/by/4.0/') CC BY
+          li Contributors of
+            | 
+            a(href='https://github.com/KittyGiraudel/a11y-dialog') a11y-dialog
+
+
     script(type='module', src='main.js')
+    script(defer, type='module' src='credits.js')
     script(defer, src='https://cloud.umami.is/script.js', data-website-id='004ee8e0-9c08-43c6-acc4-3f94bf47276d')
