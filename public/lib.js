@@ -84,6 +84,10 @@ const getHighlightTarget = (elm, container = null) => {
     return (container ?? document).querySelector(`[data-highlight="${targetId}"]`);
 } 
 
+const setBlankTargetOnExternalLinks = () => 
+  document.querySelectorAll(`a:not([href^="https://${window.location.hostname}"])`)
+    .forEach(anchor => (anchor.target = '_blank'));
+
 /**
  * TODO: make func to capture currently displayed preview window contents 
  * and restore them upon new file upload.
@@ -97,4 +101,5 @@ export {
   isFrameMetadata,
   kebabToCamel,
   parseTimestamp,
+  setBlankTargetOnExternalLinks
 }

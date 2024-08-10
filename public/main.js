@@ -9,7 +9,10 @@ import {
   isFrameMetadata,
   kebabToCamel,
   parseTimestamp,
+  setBlankTargetOnExternalLinks
 } from './lib.js';
+
+setBlankTargetOnExternalLinks();
 
 const convertButton = document.getElementById('convert-button');
 const convertForm = document.getElementById('convert-form');
