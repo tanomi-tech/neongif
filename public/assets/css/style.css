@@ -15,7 +15,6 @@ body {
 a:focus-visible,
 input:focus-visible, 
 button:focus-visible {
-  z-index: 20;
   outline: 1px solid white;
 }
 
@@ -78,6 +77,14 @@ form,
 form input,
 form button {
   font-size: 18px;
+}
+
+form input:focus,
+form input:focus-visible,
+form button:focus,
+form button:focus-visible {
+  position: relative;
+  z-index: 30;
 }
 
 input[type=number]:invalid {
