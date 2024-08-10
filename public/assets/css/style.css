@@ -39,6 +39,7 @@ a, .link {
   background: none;
   outline: 0;
   border: 0;
+  padding: 0;
 }
 
 a:hover, .link:hover {
