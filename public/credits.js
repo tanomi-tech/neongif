@@ -1,4 +1,4 @@
-import A11yDialog from '../node_modules/a11y-dialog';
+import A11yDialog from '../node_modules/a11y-dialog/dist/a11y-dialog.esm.js';
 
 (() => {
     const dialogEl = document.getElementById('credits-dialog');
