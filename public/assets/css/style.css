@@ -200,6 +200,10 @@ fieldset#start-time-fieldset {
   align-items: center;
 }
 
+fieldset#start-time-fieldset .form-input {
+  width: 6rem;
+}
+
 fieldset#start-time-fieldset .form-input-wrapper {
   margin-left: 1rem;
   margin-right: .5rem;
