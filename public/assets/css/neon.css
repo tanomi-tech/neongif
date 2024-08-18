@@ -1,5 +1,5 @@
 .neon {
-  font-family: 'Airstream NF', cursive;
+  font-family: 'Airstream NF', cursive !important;
   font-size: 140px;
   font-size: clamp(6rem, calc(6rem + 1vw), 10rem);
   color: #FFD5FF;
