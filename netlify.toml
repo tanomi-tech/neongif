@@ -3,3 +3,8 @@
   [headers.values]
     Cross-Origin-Embedder-Policy = "credentialless"
     Cross-Origin-Opener-Policy = "same-origin"
+
+[[redirects]]
+  from = "/cdn/unpkg/*"
+  to = "https://unpkg.com/:splat"
+  status = 200

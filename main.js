@@ -88,7 +88,7 @@ combineLatest(timeInputEventStreams)
 
 const ffmpeg = new FFmpeg({ log: true });
 
-const BASE_URL = 'https://unpkg.com/@ffmpeg/core-mt@0.12.6/dist/esm';
+const BASE_URL = `${import.meta.env.VITE_UNPKG_URL}/@ffmpeg/core-mt@0.12.6/dist/esm`;
 await ffmpeg.load({
   coreURL: await toBlobURL(`${BASE_URL}/ffmpeg-core.js`, 'text/javascript'),
   wasmURL: await toBlobURL(`${BASE_URL}/ffmpeg-core.wasm`, 'application/wasm'),
