@@ -64,6 +64,7 @@
 #custom-duration {
   flex-grow: 1;
   margin-right: .25rem;
+  width: 8rem;
 }
 
 .custom-duration-wrap {
