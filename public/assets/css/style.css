@@ -120,6 +120,11 @@ input[type=number]:invalid {
   z-index: 20;
 }
 
+#title, 
+#title * {
+  font-family: 'Airstream NF', sans-serif !important;
+}
+
 #convert-form {
   font-size: 1rem;
   display: flex;
