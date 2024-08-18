@@ -1,6 +1,6 @@
-import { FFmpeg } from '../node_modules/@ffmpeg/ffmpeg/dist/esm/index.js';
-import { toBlobURL } from '../node_modules/@ffmpeg/util/dist/esm/index.js';
-import { fromEvent, combineLatest, startWith, map } from '../node_modules/rxjs/dist/esm/index.js';
+import { FFmpeg } from '@ffmpeg/ffmpeg';
+import { toBlobURL } from '@ffmpeg/util';
+import { fromEvent, combineLatest, startWith, map } from './node_modules/rxjs/dist/esm/index.js';
 import { 
   calcTotalDuration, 
   createUpdateProgressCb,
@@ -11,6 +11,9 @@ import {
   parseTimestamp,
   setBlankTargetOnExternalLinks
 } from './lib.js';
+
+// Load credits...
+import './credits.js';
 
 setBlankTargetOnExternalLinks();
 
@@ -240,4 +243,3 @@ setTimeout(() => {
 }, 5000);
 
 convertForm?.classList?.remove('invisible');
-

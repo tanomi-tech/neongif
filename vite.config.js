@@ -14,12 +14,17 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['@ffmpeg/ffmpeg', '@ffmpeg/util'],
   },
-  plugins: [ mkcert(), pugPlugin(), nodeResolve() ],
+  plugins: [ 
+    mkcert(), 
+    pugPlugin(), 
+    nodeResolve(),
+  ],
   build: {
     target: 'es2022',
     rollupOptions: {
-      input: ['index.html', 'public/main.js'],
+      input: ['index.html', 'main.js'],
       output: {
+        manualChunks: () => 'index',
         chunkFileNames: '[name].js',
         assetFileNames: '[name].[ext]',
         entryFileNames: '[name].js',
