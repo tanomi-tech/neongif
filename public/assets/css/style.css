@@ -7,6 +7,10 @@ body {
   overflow-x: hidden;
 }
 
+* {
+  font-family: 'Open Sans', 'Noto', 'Ubuntu', sans-serif;
+}
+
 body {
   width: 100vw;
   background-color: #181926;
