@@ -88,12 +88,14 @@ combineLatest(timeInputEventStreams)
 
 const ffmpeg = new FFmpeg({ log: true });
 
+console.log('loading ffmpeg...')
 const BASE_URL = `${import.meta.env.VITE_UNPKG_URL}/@ffmpeg/core-mt@0.12.6/dist/esm`;
 await ffmpeg.load({
   coreURL: await toBlobURL(`${BASE_URL}/ffmpeg-core.js`, 'text/javascript'),
   wasmURL: await toBlobURL(`${BASE_URL}/ffmpeg-core.wasm`, 'application/wasm'),
   workerURL: await toBlobURL(`${BASE_URL}/ffmpeg-core.worker.js`, 'text/javascript'),
 });
+console.log('await ffmpeg.load finished')
 
 ffmpeg.on('log', (log) => {
   if (!capturedDuration && log.message.trim().startsWith('Duration:')) {
@@ -231,7 +233,7 @@ convertForm.addEventListener('submit', (event) => {
     });
 });
 
-
+console.log('finished setting up event listeners.')
 /**
   * Loading finished setup
   */
@@ -243,3 +245,5 @@ setTimeout(() => {
 }, 5000);
 
 convertForm?.classList?.remove('invisible');
+
+console.log('entire module finished loading!')
