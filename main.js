@@ -9,13 +9,14 @@ import {
   isFrameMetadata,
   kebabToCamel,
   parseTimestamp,
-  setBlankTargetOnExternalLinks
+  setBlankTargetOnExternalLinks,
+  userIsOnMobile
 } from './lib.js';
 
 // Load credits...
 import './credits.js';
 
-(async () => {
+const main = async () => {
   setBlankTargetOnExternalLinks();
 
   const convertButton = document.getElementById('convert-button');
@@ -87,15 +88,27 @@ import './credits.js';
         });
     });
 
+  const isOnMobile = userIsOnMobile();
   const ffmpeg = new FFmpeg({ log: true });
 
   console.log('loading ffmpeg...')
-  const BASE_URL = `${import.meta.env.VITE_UNPKG_URL}/@ffmpeg/core-mt@0.12.6/dist/esm`;
-  await ffmpeg.load({
-    coreURL: await toBlobURL(`${BASE_URL}/ffmpeg-core.js`, 'text/javascript'),
-    wasmURL: await toBlobURL(`${BASE_URL}/ffmpeg-core.wasm`, 'application/wasm'),
-    workerURL: await toBlobURL(`${BASE_URL}/ffmpeg-core.worker.js`, 'text/javascript'),
-  });
+
+  const BASE_URL = isOnMobile 
+    ? `${import.meta.env.VITE_UNPKG_URL}/@ffmpeg/core@0.12.6/dist/esm`
+    : `${import.meta.env.VITE_UNPKG_URL}/@ffmpeg/core-mt@0.12.6/dist/esm`;
+
+  const ffmpegConfig = isOnMobile
+    ? {
+      coreURL: await toBlobURL(`${BASE_URL}/ffmpeg-core.js`, 'text/javascript'),
+      wasmURL: await toBlobURL(`${BASE_URL}/ffmpeg-core.wasm`, 'application/wasm'),
+    }
+    : {
+      coreURL: await toBlobURL(`${BASE_URL}/ffmpeg-core.js`, 'text/javascript'),
+      wasmURL: await toBlobURL(`${BASE_URL}/ffmpeg-core.wasm`, 'application/wasm'),
+      workerURL: await toBlobURL(`${BASE_URL}/ffmpeg-core.worker.js`, 'text/javascript'),
+    };
+
+  await ffmpeg.load(ffmpegConfig);
   console.log('await ffmpeg.load finished')
 
   ffmpeg.on('log', (log) => {
@@ -248,4 +261,10 @@ import './credits.js';
   convertForm?.classList?.remove('invisible');
 
   console.log('entire module finished loading!')
-})();
+};
+
+try {
+  main();
+} catch (err) {
+  console.error(err);
+}

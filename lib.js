@@ -88,6 +88,16 @@ const setBlankTargetOnExternalLinks = () =>
   document.querySelectorAll(`a:not([href^="https://${window.location.hostname}"])`)
     .forEach(anchor => (anchor.target = '_blank'));
 
+const userIsOnMobile = () => [
+  /Android/i,
+  /webOS/i,
+  /iPhone/i,
+  /iPad/i,
+  /iPod/i,
+  /BlackBerry/i,
+  /Windows Phone/i
+].some(regex => navigator.userAgent.match(regex))
+
 /**
  * TODO: make func to capture currently displayed preview window contents 
  * and restore them upon new file upload.
@@ -101,5 +111,6 @@ export {
   isFrameMetadata,
   kebabToCamel,
   parseTimestamp,
-  setBlankTargetOnExternalLinks
+  setBlankTargetOnExternalLinks,
+  userIsOnMobile,
 }
